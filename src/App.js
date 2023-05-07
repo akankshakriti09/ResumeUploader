@@ -6,17 +6,19 @@ function App() {
   return (
     <>
       <Box display="flex" justifyContent="center" sx={{
-       backgroundColor:"error.light" , padding:2}}>
+       backgroundColor:"#B71C1C" , padding:2}}>
         <Typography variant="h4" component="div" sx={{ 
           fontweight:"bold", color:"white"}}>Resume Uploader</Typography>
       </Box>
       <Grid container justifyContent="center">
+
         <Grid item xs={5}>
           <h1>Form</h1>
         </Grid>
+        
         <Grid item xs={7}>
           <Box display="flex" justifyContent="center" sx={{
-            backgroundColor: "info.light", padding: 1
+            backgroundColor: "indigo", padding: 1
           }}>
             <Typography variant="h5" component="div" sx={{
               fontWeight: "bold", color:"white" }}>
@@ -34,14 +36,14 @@ function App() {
                   <TableCell align="center">State</TableCell>
                   <TableCell align="center">Gender</TableCell>
                   <TableCell align="center">Location</TableCell>
-                  <TableCell align="center">Avatar</TableCell>
+                  <TableCell align="center">Profile</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell align="center">Sonam</TableCell>
-                  <TableCell align="center">sonam@gmail.com</TableCell>
-                  <TableCell align="center">20/10/1995</TableCell>
+                  <TableCell align="center">Prity</TableCell>
+                  <TableCell align="center">prity@gmail.com</TableCell>
+                  <TableCell align="center">12/08/1998</TableCell>
                   <TableCell align="center">Bihar</TableCell>
                   <TableCell align="center">Female</TableCell>
                   <TableCell align="center">Delhi Ranchi</TableCell>
@@ -50,7 +52,7 @@ function App() {
               </TableBody>
             </Table>
           </TableContainer>
-          
+
         </Grid>
       </Grid>
     </>
