@@ -15,7 +15,14 @@ function App() {
           <h1>Form</h1>
         </Grid>
         <Grid item xs={7}>
-          <Box></Box>
+          <Box display="flex" justifyContent="center" sx={{
+            backgroundColor: "info.light", padding: 1
+          }}>
+            <Typography variant="h5" component="div" sx={{
+              fontWeight: "bold", color:"white" }}>
+                List of Candidates
+              </Typography>
+          </Box>
         </Grid>
       </Grid>
     </>
