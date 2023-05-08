@@ -1,8 +1,9 @@
 import { Grid, TextField, Typography, FormControlLabel, Checkbox, Button, Box, Alert, InputLabel, MenuItem, Select, FormControl, FormLabel,
 RadioGroup, Radio, FormGroup, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Avatar } 
 from '@mui/material';
-import { LocalizationProvider, DatePicker } from '@mui/lab';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useState } from 'react';
 
 function App() {
@@ -15,20 +16,25 @@ function App() {
       <Box display="flex" justifyContent="center" sx={{
        backgroundColor:"#B71C1C" , padding:2}}>
         <Typography variant="h4" component="div" sx={{ 
-          fontweight:"bold", color:"white"}}>Resume Uploader</Typography>
+          fontWeight:"bold", color:"white"}}>Resume Uploader</Typography>
       </Box>
       <Grid container justifyContent="center">
 
         <Grid item xs={5}>
-          <Box component="form" sx={{ p: 3 }} noValidate id="resume-form">
+          <Box component="form" sx={{ p: 3 }} noValidate id="resume-form" >
             <TextField id="name" name="name" required fullWidth margin='normal' label='Name' />
             <TextField id="email" email="email" required fullWidth margin='normal' label='Email' />
-            <Box>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker label="Date of Birth" value={dob} onChange={(newValue) => { setDob(newValue) }}
-                renderInput={(params) => <TextField {...params} /> } />
+            <Box mt={2}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker 
+                label="Date of Birth"
+                value={dob} 
+                onChange={(newValue) => setDob(newValue)} 
+                renderInput={(props) => <TextField {...props} />}
+                />
               </LocalizationProvider>
             </Box>
+            <FormControl></FormControl>
           </Box>
         </Grid>
 
