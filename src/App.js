@@ -1,8 +1,15 @@
 import { Grid, TextField, Typography, FormControlLabel, Checkbox, Button, Box, Alert, InputLabel, MenuItem, Select, FormControl, FormLabel,
 RadioGroup, Radio, FormGroup, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Avatar } 
 from '@mui/material';
+import { LocalizationProvider, DatePicker } from '@mui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { useState } from 'react';
 
 function App() {
+
+  // States
+  const [dob, setDob] = useState(null)
+
   return (
     <>
       <Box display="flex" justifyContent="center" sx={{
@@ -13,17 +20,21 @@ function App() {
       <Grid container justifyContent="center">
 
         <Grid item xs={5}>
-          <h1>Form</h1>
+          <Box component="form" sx={{ p: 3 }} noValidate id="resume-form">
+            <TextField id="name" name="name" required fullWidth margin='normal' label='Name' />
+            <TextField id="email" email="email" required fullWidth margin='normal' label='Email' />
+            <Box>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker label="Date of Birth" value={dob} onChange={(newValue) => { setDob(newValue) }}
+                renderInput={(params) => <TextField {...params} /> } />
+              </LocalizationProvider>
+            </Box>
+          </Box>
         </Grid>
-        
+
         <Grid item xs={7}>
-          <Box display="flex" justifyContent="center" sx={{
-            backgroundColor: "indigo", padding: 1
-          }}>
-            <Typography variant="h5" component="div" sx={{
-              fontWeight: "bold", color:"white" }}>
-                List of Candidates
-              </Typography>
+          <Box display="flex" justifyContent="center" sx={{ backgroundColor: 'info.light', padding: 1 }}>
+            <Typography variant="h5" component="div" sx={{ fontWeight: 'bold', color: 'white' }}> List of Candidates</Typography>
           </Box>
 
           <TableContainer component={Paper}>
