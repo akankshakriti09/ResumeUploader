@@ -167,7 +167,6 @@ function App() {
 
             <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, px: 5 }} color="error">Submit</Button>
             {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ''}
-      
           </Box>
         </Grid>
 
