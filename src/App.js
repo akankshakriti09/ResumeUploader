@@ -5,8 +5,14 @@ import { LocalizationProvider} from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useState } from 'react';
+import { styled } from '@mui/material/styles';
 
 function App() {
+
+  // Style for Upload Button
+  const Input = styled('input')({
+      display: 'none',
+   });
 
   // States
   const [name, setName] = useState() //Name
@@ -15,13 +21,63 @@ function App() {
   const [st, setSt] = useState('') //State
   const [gender, setGender] = useState() //Gender
   const [pjl, setPjl] = useState([]) //Job Location
+  const [pimage, setPimage] = useState('') //Upload Image
+  const [rdoc, setRdoc] = useState('') //Upload Resume Doc
+  const [error, setError] = useState({
+    status: false,
+    msg: "",
+    type: ""
+  })
 
-    // Multi Checkbox for Preferred Job Location
-    const getPjl = (e) => {
+  // Multi Checkbox for Preferred Job Location
+  const getPjl = (e) => {
       let data = pjl
       data.push(e.target.value)
       setPjl(data)
+  }
+
+  // Clear Form
+  const resetForm = () => {
+      setName('')
+      setEmail('')
+      setDob(null)
+      setSt('')
+      setGender('')
+      setPjl([])
+      setPimage('')
+      setRdoc('')
+      document.getElementById('resume-form').reset()
+   }
+
+   // Handle Form Submission
+   const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData()
+    data.append('name', name)
+    data.append('email', email)
+    data.append('dob', dob)
+    data.append('st', st)
+    data.append('gender', gender)
+    data.append('pjl', pjl)
+    data.append('pimage', pimage)
+    data.append('rdoc', rdoc)
+    if (name && email) {
+      console.log(data.get('name'))
+      console.log(data.get('email'))
+      console.log(data.get('dob'))
+      console.log(data.get('st'))
+      console.log(data.get('gender'))
+      console.log(data.get('pjl'))
+      console.log(data.get('pimage'))
+      console.log(data.get('rdoc'))
+      setError({ status: true, msg: "Resume Uploaded Successfully", type: 'success' })
+      resetForm()
+    } else {
+      setError({ status: true, msg: "All Fields are Required", type: 'error' })
     }
+  }
+
+
 
   return (
     <>
@@ -33,7 +89,7 @@ function App() {
       <Grid container justifyContent="center">
 
         <Grid item xs={5}>
-          <Box component="form" sx={{ p: 3 }} noValidate id="resume-form" >
+          <Box component="form" sx={{ p: 3 }} noValidate id="resume-form" onSubmit={handleSubmit}>
             <TextField id="name" name="name" required fullWidth margin='normal' label='Name' onChange={(e) => setName(e.target.value)} />
             <TextField id="email" email="email" required fullWidth margin='normal' label='Email' onChange={(e) => setEmail(e.target.value)} />
             <Box mt={2}>
@@ -95,12 +151,23 @@ function App() {
                <FormControlLabel control={<Checkbox />} label="Mumbai" value="Mumbai" onChange={(e) => getPjl(e)} />
                <FormControlLabel control={<Checkbox />} label="Delhi" value="Delhi" onChange={(e) => getPjl(e)} />
                <FormControlLabel control={<Checkbox />} label="Kolkata" value="Kolkata" onChange={(e) => getPjl(e)} /> 
-                
-                
               </FormGroup>
             </FormControl>
 
+            <Stack direction="row" alignItems="center" spacing={4} >
+              <label htmlFor='profile-photo'>
+                <Input accept="image/*" id="profile-photo" type="file" onChange={(e) => { setPimage(e.target.files[0]) }} />
+                <Button variant='contained' component='span'>Upload Photo </Button>
+              </label>
+              <label htmlFor="resume-file">
+                <Input accept="doc/*" id="resume-file" type="file" onChange={(e) => { setRdoc(e.target.files[0]) }} />
+                <Button variant="contained" component="span">Upload File</Button>
+              </label>
+            </Stack>
 
+            <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, px: 5 }} color="error">Submit</Button>
+            {error.status ? <Alert severity={error.type}>{error.msg}</Alert> : ''}
+      
           </Box>
         </Grid>
 
