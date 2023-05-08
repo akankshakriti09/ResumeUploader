@@ -9,7 +9,11 @@ import { useState } from 'react';
 function App() {
 
   // States
-  const [dob, setDob] = useState(null)
+  const [name, setName] = useState() //Name
+  const [email, setEmail] = useState() //EMail
+  const [dob, setDob] = useState(null) //Date of Birth
+  const [st, setSt] = useState('') //State
+  const [gender, setGender] = useState() //Gender
 
   return (
     <>
@@ -22,8 +26,8 @@ function App() {
 
         <Grid item xs={5}>
           <Box component="form" sx={{ p: 3 }} noValidate id="resume-form" >
-            <TextField id="name" name="name" required fullWidth margin='normal' label='Name' />
-            <TextField id="email" email="email" required fullWidth margin='normal' label='Email' />
+            <TextField id="name" name="name" required fullWidth margin='normal' label='Name' onChange={(e) => setName(e.target.value)} />
+            <TextField id="email" email="email" required fullWidth margin='normal' label='Email' onChange={(e) => setEmail(e.target.value)} />
             <Box mt={2}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker 
@@ -34,7 +38,48 @@ function App() {
                 />
               </LocalizationProvider>
             </Box>
-            <FormControl></FormControl>
+            <FormControl fullWidth margin='normal'>
+              <InputLabel id="state-select-label">State</InputLabel>
+              <Select LabelId='state-select-label' id='state-select' value={st} Label='st' onChange={(e)=>{setSt(e.target.value)}}>
+                <MenuItem value="AP">Andhra Pradesh</MenuItem>
+                <MenuItem value="ARP">Arunachal Pradesh</MenuItem>
+                <MenuItem value="ASM">Assam</MenuItem>
+                <MenuItem value="BH">Bihar</MenuItem>
+                <MenuItem value="CH">Chhattisgarh</MenuItem>
+                <MenuItem value="G">Goa</MenuItem>
+                <MenuItem value="GJ">Gujarat</MenuItem>
+                <MenuItem value="JH">Jharkhand</MenuItem>
+                <MenuItem value="KA">Karnataka</MenuItem>
+                <MenuItem value="KL">Kerala</MenuItem>
+                <MenuItem value="MP">Madhya Pradesh</MenuItem>
+                <MenuItem value="MH">Maharashtra</MenuItem>
+                <MenuItem value="MR">Manipur</MenuItem>
+                <MenuItem value="MGH">Meghalaya</MenuItem>
+                <MenuItem value="MZ">Mizoram</MenuItem>
+                <MenuItem value="N">Nagaland</MenuItem>
+                <MenuItem value="O">Odisha</MenuItem>
+                <MenuItem value="P">Punjab</MenuItem>
+                <MenuItem value="RJ">Rajasthan</MenuItem>
+                <MenuItem value="S"> Sikkim</MenuItem>
+                <MenuItem value="TN">Tamil Nadu</MenuItem>
+                <MenuItem value="TL">Telangana</MenuItem>
+                <MenuItem value="TR">Tripura</MenuItem>
+                <MenuItem value="UK">Uttarakhand</MenuItem>
+                <MenuItem value="UP">Uttar Pradesh</MenuItem>
+                <MenuItem value="WB">West Bengal</MenuItem>
+              </Select>
+            </FormControl>
+          
+            <FormControl fullWidth margin='normal'>
+              <FormLabel id="gender-radio">Gender</FormLabel>
+              <RadioGroup row name="gender" aria-labelledby="gender-radio">
+                <FormControlLabel value="male" control={<Radio />} label='Male' onChange={(e) => setGender(e.target.value)} />
+                <FormControlLabel value="female" control={<Radio />} label='Female' onChange={(e) => setGender(e.target.value)} />
+                <FormControlLabel value="other" control={<Radio />} label='Other' onChange={(e) => setGender(e.target.value)} />
+              </RadioGroup>
+            </FormControl>
+
+
           </Box>
         </Grid>
 
