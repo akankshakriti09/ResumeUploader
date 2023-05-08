@@ -14,6 +14,14 @@ function App() {
   const [dob, setDob] = useState(null) //Date of Birth
   const [st, setSt] = useState('') //State
   const [gender, setGender] = useState() //Gender
+  const [pjl, setPjl] = useState([]) //Job Location
+
+    // Multi Checkbox for Preferred Job Location
+    const getPjl = (e) => {
+      let data = pjl
+      data.push(e.target.value)
+      setPjl(data)
+    }
 
   return (
     <>
@@ -77,6 +85,19 @@ function App() {
                 <FormControlLabel value="female" control={<Radio />} label='Female' onChange={(e) => setGender(e.target.value)} />
                 <FormControlLabel value="other" control={<Radio />} label='Other' onChange={(e) => setGender(e.target.value)} />
               </RadioGroup>
+            </FormControl>
+
+            <FormControl component='fieldset' fullWidth margin='normal'>
+              <FormLabel component='legend'>Preferred Job Location:</FormLabel>
+              <FormGroup row>
+               <FormControlLabel control={<Checkbox />} label="Bangalore" value="Bangalore" onChange={(e) => getPjl(e)} />
+               <FormControlLabel control={<Checkbox />} label="Hyedarabad" value="Hyedarabad" onChange={(e) => getPjl(e)} />
+               <FormControlLabel control={<Checkbox />} label="Mumbai" value="Mumbai" onChange={(e) => getPjl(e)} />
+               <FormControlLabel control={<Checkbox />} label="Delhi" value="Delhi" onChange={(e) => getPjl(e)} />
+               <FormControlLabel control={<Checkbox />} label="Kolkata" value="Kolkata" onChange={(e) => getPjl(e)} /> 
+                
+                
+              </FormGroup>
             </FormControl>
 
 
