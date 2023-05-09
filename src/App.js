@@ -98,13 +98,13 @@ function App() {
                 label="Date of Birth"
                 value={dob} 
                 onChange={(newValue) => setDob(newValue)} 
-                renderInput={(props) => <TextField {...props} />}
+                textField={(props) => <TextField {...props} />}
                 />
               </LocalizationProvider>
             </Box>
             <FormControl fullWidth margin='normal'>
               <InputLabel id="state-select-label">State</InputLabel>
-              <Select LabelId='state-select-label' id='state-select' value={st} Label='st' onChange={(e)=>{setSt(e.target.value)}}>
+              <Select labelid='state-select-label' id='state-select' value={st} label='st' onChange={(e)=>{setSt(e.target.value)}}>
                 <MenuItem value="AP">Andhra Pradesh</MenuItem>
                 <MenuItem value="ARP">Arunachal Pradesh</MenuItem>
                 <MenuItem value="ASM">Assam</MenuItem>
