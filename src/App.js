@@ -121,7 +121,7 @@ function App() {
                 <MenuItem value="MGH">Meghalaya</MenuItem>
                 <MenuItem value="MZ">Mizoram</MenuItem>
                 <MenuItem value="N">Nagaland</MenuItem>
-                <MenuItem value="O">Odisha</MenuItem>
+                <MenuItem value="O">Orissa</MenuItem>
                 <MenuItem value="P">Punjab</MenuItem>
                 <MenuItem value="RJ">Rajasthan</MenuItem>
                 <MenuItem value="S"> Sikkim</MenuItem>
